@@ -1,70 +1,51 @@
 package org.example;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Random;
+
 
 public class Main {
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
-        double total=0;
-        double precioProductos = 0;
-        double dineroIngresado;
-        int productosAdquiridos=0;
-        double vueltas;
-        int opcion;
 
-        do{
-            System.out.println("PRODUCTOS:");
-            System.out.println("1. Galletas Oreo - $2000");
-            System.out.println("2. Coca cola - $3000");
-            System.out.println("3. Agua - $2000");
-            System.out.println("4. Tostacos - $1300");
-            System.out.println("5. Papas pollo - $2200");
-            System.out.println("6. Te - $3000");
-            System.out.println("7. Chocolatina - $1550");
-            System.out.println("8. Manimoto - $2000");
-            System.out.println("9. Jugo hit - $1700");
-            System.out.println("10. Cheetos - $2300");
-            System.out.println("11. Terminar compra");
-            System.out.println("SELECCIONE NUMERO DEL PRODUCTO:");
-            opcion = scanner.nextInt();
+        int persona1;
+        int persona2;
+        int winJugador1 = 0;
+        int winJugador2 = 0;
 
-            switch (opcion) {
+        Random random = new Random();
+        System.out.println("Piedra, papel o tijera...");
+        System.out.println("Recuerda que 1 es piedra - 2 es papel - 3 es tijera");
 
-                case 1 -> precioProductos = 2000;
-                case 2 -> precioProductos = 3000;
-                case 3 -> precioProductos = 2000;
-                case 4 -> precioProductos = 1300;
-                case 5 -> precioProductos = 2200;
-                case 6 -> precioProductos = 3000;
-                case 7 -> precioProductos = 1550;
-                case 8 -> precioProductos = 2000;
-                case 9 -> precioProductos = 1700;
-                case 10 -> precioProductos = 2300;
-                case 11 -> System.out.println("Terminando compra");
-                default -> System.out.println("Opción inválida, intente de nuevo.");
+        while (winJugador1 < 2 && winJugador2 < 2) {
+            persona1 = random.nextInt(3) + 1;
+            persona2 = random.nextInt(3) + 1;
+
+            System.out.println("Ronda N°:" + (winJugador1 + winJugador2 + 1) );
+            System.out.println("Jugadr 1 eligió: " + (persona1));
+            System.out.println("Jugador 2 eligió: " + (persona2));
+
+            if ((persona1 == 1 && persona2 == 2) ||
+                    (persona1 == 2 && persona2 == 3) ||
+                    (persona1 == 3 && persona2 == 1)) {
+                winJugador2++;
+                System.out.println("Ganador de ronda: Jugador N°2");
+
+            } else if (persona1 == persona2) {
+                System.out.println("Empate");
+            } else {
+                winJugador1++;
+                System.out.println("Ganador de ronda: Jugador N°1");
             }
-            if (opcion >= 1 && opcion <= 10){
-                total += precioProductos;
-                productosAdquiridos++;
-                System.out.println("Producto añadido - Total compra: $"+total);
-            }
-    }while (opcion!= 11 && productosAdquiridos < 5);
-        
-        if (total > 0){
-            System.out.println("Ingrese dinero");
-            dineroIngresado = scanner.nextDouble();
-            
-            if (dineroIngresado >= total){
-                vueltas = dineroIngresado - total;
-                System.out.println("Pago realizado - sus vueltas son: $"+ vueltas);
-            }else {
-                System.out.println("Dinero insuficiente, vuelva a intentar");
-            }
-        }else{
-            System.out.println("Saliendo");
         }
-}
-}
+
+
+        if (winJugador1 == 2) {
+            System.out.println("El ganador del juego es el Jugador 1");
+        } else {
+            System.out.println("El ganador del juego es el Jugador 2");
+
+
+        }
+    }    }
